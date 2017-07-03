@@ -1,3 +1,56 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$color-background: #333;
+$color-text-header1: #f99;
+$color-text-header2: #f66;
+$color-text-newsflash-normal: #fff;
+$color-text-newsflash-strong: #eca;
+$color-text-substance: #ccc;
+$color-text-substance-link: #fff;
+
+$font-family-fallback: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$font-family-headers: CabinSketch,$font-family-fallback;
+$font-family-substance: $font-family-fallback;
+
+.alk-header-common {
+  font-family: $font-family-headers;
+  margin: 0;
+  text-align: center;
+}
+.alk-substance-common {
+  font-family: $font-family-substance;
+  font-size: 20pt;
+  margin: 0.7em 0.7em 1em;
+}
+.alk-newsflash {
+  @extend .alk-substance-common;
+  font-size: 30pt;
+  color: $color-text-newsflash-normal;
+  strong {
+    color: $color-text-newsflash-strong;
+  }
+}
+body {
+  background-color: $color-background;
+  color: $color-text-substance;
+}
+h1 {
+  @extend .alk-header-common;
+  color: $color-text-header1;
+  font-size: 50pt;
+  margin-top: 0.5em;
+}
+h2 {
+  @extend .alk-header-common;
+  color: $color-text-header2;
+  font-size: 25pt;
+}
+a {
+  @extend .alk-substance-common;
+  color: $color-text-substance-link;
+  margin: 0;
+}
+p {
+  @extend .alk-substance-common;
+}
