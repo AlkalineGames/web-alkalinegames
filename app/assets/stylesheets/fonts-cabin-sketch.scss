@@ -1,0 +1,16 @@
+$FontsCabinSketch: "CabinSketch";
+$FontsCabinSketchPath: $FontsCabinSketch;
+
+@font-face {
+  font-family: $FontsCabinSketch;
+  font-weight: bold;
+  font-style: normal;
+  src: url('#{$FontsCabinSketchPath}/#{$FontsCabinSketch}-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $FontsCabinSketch;
+  font-weight: normal;
+  font-style: normal;
+  src: url('#{$FontsCabinSketchPath}/#{$FontsCabinSketch}-Regular.ttf') format('truetype');
+}
