@@ -49,7 +49,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 -------------------------
-This license applies to files in the directory vendor/assets/javascripts/aframe-more/ideaspacevr/aframe-particle-system-component/.
+This license applies to files in the directories:
+  vendor/assets/images/aframe-more/ideaspacevr/aframe-particle-system-component/,
+  vendor/assets/javascripts/aframe-more/ideaspacevr/aframe-particle-system-component/.
 
 The MIT License (MIT)
 
