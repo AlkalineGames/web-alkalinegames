@@ -1,44 +1,234 @@
+<!--
 <h1>Alkaline Games LLC&trade;</h1>
 <h2>...basically, we make games</h2>
 <br>
+-->
 <a-scene>
   <a-assets>
     <a-asset-item id="railer-rail" src="/assets/railer-rail.dae"></a-asset-item>
   </a-assets>
-  <a-entity
-    id="moon"
-    geometry="primitive: sphere; radius: 1"
-    material="color: #EFEFEF; shader: flat"
-    position="-30 20 -50"
-    light="type: point; intensity: 1">
-  </a-entity>
-  <a-entity
-    id="sky"
+  <a-mixin id="text-company"
+    text="align: center; color: #ff3b69; width: 3000; font: /assets/Jam3/Roboto-msdf.json; value: Alkaline Games LLC™">
+  </a-mixin>
+  <a-mixin id="text-tagline"
+    text="align: center; color: #ffbd5c; width: 1500; font: /assets/Jam3/Roboto-msdf.json; value: ...basically, we make games" >
+  </a-mixin>
+  <a-entity id="sky"
     geometry="primitive: sphere; radius: 5000"
     material="shader: gradient; topColor: 000 000 050; bottomColor: 255 200 150"
     scale="-1 1 1">
     <!-- requires <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script> -->
   </a-entity>
-  <a-entity
-    id="dust"
-    particle-system="preset: dust; color: #ff7f3f; particleCount: 2000; rotationAngle: 0; rotationAxis: z; texture: /assets/aframe-more/ideaspacevr/aframe-particle-system-component/smokeparticle.png">
-    <!-- requires <script src="https://unpkg.com/aframe-particle-system-component@1.0.10/dist/aframe-particle-system-component.min.js"></script> -->
+  <a-entity id="moon"
+    geometry="primitive: sphere; radius: 1"
+    material="color: #EFEFEF; shader: flat"
+    position="-30 20 -50"
+    light="type: point; intensity: 1">
   </a-entity>
-  <a-entity
-    id="ocean"
+  <a-entity position="0 600 -1000">
+    <a-text mixin="text-company" position="0   50 0"></a-text>
+    <a-text mixin="text-tagline" position="0 -100 0"></a-text>
+  </a-entity>
+  <a-entity position="-1000 600 0" rotation="0 90 0">
+    <a-text mixin="text-company" position="0   50 0"></a-text>
+    <a-text mixin="text-tagline" position="0 -100 0"></a-text>
+  </a-entity>
+  <a-entity position="1000 600 0" rotation="0 -90 0">
+    <a-text mixin="text-company" position="0   50 0"></a-text>
+    <a-text mixin="text-tagline" position="0 -100 0"></a-text>
+  </a-entity>
+  <a-entity position="0 600 1000" rotation="0 180 0">
+    <a-text mixin="text-company" position="0   50 0"></a-text>
+    <a-text mixin="text-tagline" position="0 -100 0"></a-text>
+  </a-entity>
+  <a-entity id="ocean"
     ocean="density: 30; width: 50; depth: 50; speed: 1"
     material="color: #1fbfcf; opacity: 0.8; metalness: 1; roughness: 0.8"
     rotation="-90 0 0">
     <!-- requires <script src="https://unpkg.com/aframe-extras.ocean@%3.8.6/dist/aframe-extras.ocean.min.js"></script> -->
   </a-entity>
-  <a-collada-model
-    src="#railer-rail"
+  <a-collada-model src="#railer-rail"
     position="3 0.1 -10"
     rotation="0 90 0"
     animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 3 0.25 -10; loop: true">
     <!-- requires <script src="https://unpkg.com/aframe-animation-component@3.2.5/dist/aframe-animation-component.min.js"></script> -->
   </a-collada-model>
+  <a-entity id="dust"
+    particle-system="preset: dust; color: #ff7f3f; particleCount: 2000; rotationAngle: 0; rotationAxis: z; texture: /assets/aframe-more/ideaspacevr/aframe-particle-system-component/smokeparticle.png">
+    <!-- requires <script src="https://unpkg.com/aframe-particle-system-component@1.0.10/dist/aframe-particle-system-component.min.js"></script> -->
+  </a-entity>
 </a-scene>
+
+<!--
+<a-scene>
+  <a-assets>
+    <img id="lake" src="/assets/lake.jpg">
+    <a-asset-item id="railer-rail" src="/assets/railer-rail.dae"></a-asset-item>
+    <a-mixin id="marker"
+      geometry="primitive: box"
+      material="color: red"
+      scale="0.05 0.05 0.001"
+    ></a-mixin>
+  </a-assets>
+
+  <a-sky src="#lake"></a-sky>
+
+      <a-entity position="0 0 -3.7">
+        <a-text mixin="msdf-text" position="-3 -2 0" wrap-count="20"></a-text>
+        <a-entity mixin="marker" position="-3 -2 -0.1"></a-entity>
+        <a-text mixin="msdf-text" position="-3 0 0" wrap-count="30"></a-text>
+        <a-entity mixin="marker" position="-3 0 -0.1"></a-entity>
+        <a-text mixin="msdf-text" position="-3 1 0" wrap-count="40"></a-text>
+        <a-entity mixin="marker" position="-3 1 -0.1"></a-entity>
+        <a-text mixin="msdf-text" position="-3 1.5 0" wrap-count="50"></a-text>
+        <a-entity mixin="marker" position="-3 1.5 -0.1"></a-entity>
+        <a-text mixin="msdf-text" position="-3 2 0" wrap-count="60"></a-text>
+        <a-entity mixin="marker" position="-3 2 -0.1"></a-entity>
+        <a-text mixin="msdf-text" position="-3 2.5 0" wrap-count="70"></a-text>
+        <a-entity mixin="marker" position="-3 2.5 -0.1"></a-entity>
+        <a-text mixin="msdf-text" position="-3 3 0" wrap-count="80"></a-text>
+        <a-entity mixin="marker" position="-3 3 -0.1"></a-entity>
+
+        <a-text mixin="text" font="kelsonsans" position="3 -2 0" wrap-count="20"></a-text>
+        <a-entity mixin="marker" position="3 -2 -0.1"></a-entity>
+        <a-text mixin="text" font="kelsonsans" position="3 0 0" wrap-count="30"></a-text>
+        <a-entity mixin="marker" position="3 0 -0.1"></a-entity>
+        <a-text mixin="text" font="kelsonsans" position="3 1 0" wrap-count="40"></a-text>
+        <a-entity mixin="marker" position="3 1 -0.1"></a-entity>
+        <a-text mixin="text" font="kelsonsans" position="3 1.5 0" wrap-count="50"></a-text>
+        <a-entity mixin="marker" position="3 1.5 -0.1"></a-entity>
+        <a-text mixin="text" font="kelsonsans" position="3 2 0" wrap-count="60"></a-text>
+        <a-entity mixin="marker" position="3 2 -0.1"></a-entity>
+        <a-text mixin="text" font="kelsonsans" position="3 2.5 0" wrap-count="70"></a-text>
+        <a-entity mixin="marker" position="3 2.5 -0.1"></a-entity>
+        <a-text mixin="text" font="kelsonsans" position="3 3 0" wrap-count="80"></a-text>
+        <a-entity mixin="marker" position="3 3 -0.1"></a-entity>
+      </a-entity>
+</a-scene>
+-->
+
+<!-- composite
+    <a-scene>
+      <a-assets>
+        <img id="lake" src="/assets/lake.jpg">
+        <img id="pdx" src="/assets/portland.png">
+        <a-asset-item id="railer-rail" src="/assets/railer-rail.dae"></a-asset-item>
+      </a-assets>
+
+      <a-sky src="#lake"></a-sky>
+      <a-collada-model src="#railer-rail" position="0 0 -6"></a-collada-model>
+      <a-image src="#pdx" width="10" height="5" position="-2 1.2 -3"
+               scale="0.2 0.2 0.2"></a-image>
+    </a-scene>
+-->
+
+<!-- dynamic-lights
+    <a-scene>
+      <a-assets>
+        <a-mixin id="light" geometry="primitive: sphere; radius: 1.5"
+                 material="color: #FFF; shader: flat"
+                 light="color: #DDDDFF; distance: 120; intensity: 2; type: point">
+        </a-mixin>
+        <a-mixin id="torus-knot" geometry="primitive: torusKnot"
+                 material="color: red"></a-mixin>
+      </a-assets>
+-->
+
+      <!-- Camera. -->
+<!--
+      <a-entity position="0 0 80">
+        <a-camera fov="45" user-height="0"></a-camera>
+      </a-entity>
+-->
+
+      <!-- Skysphere. -->
+<!--
+      <a-entity geometry="primitive: sphere; radius: 300"
+                material="color: #111; shader: flat"
+                scale="-1 -1 -1"></a-entity>
+-->
+
+      <!-- Lights. -->
+<!--
+      <a-entity position="0 0 0">
+        <a-animation attribute="rotation" to="0 0 360"
+                     repeat="indefinite" easing="linear" dur="4096">
+        </a-animation>
+        <a-entity mixin="light" position="30 0 0"></a-entity>
+      </a-entity>
+
+      <a-entity position="0 0 0">
+        <a-animation attribute="rotation" to="360 0 0"
+                     repeat="indefinite" easing="linear" dur="4096">
+        </a-animation>
+        <a-entity mixin="light" position="0 0 40"></a-entity>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      var scene = document.querySelector('a-scene');
+
+      for (var i = 0; i < 120; i++) {
+        var obj = document.createElement('a-entity');
+        obj.setAttribute('geometry', {
+          primitive: 'torusKnot',
+          radius: Math.random() * 10,
+          radiusTubular: Math.random() * .75,
+          p: Math.round(Math.random() * 10),
+          q: Math.round(Math.random() * 10)
+        });
+        obj.setAttribute('material', {
+          color: getRandColor(),
+          metalness: Math.random(),
+          roughness: Math.random()
+        });
+        obj.setAttribute('position', {
+          x: getRandCoord(),
+          y: getRandCoord(),
+          z: getRandCoord()
+        });
+        scene.appendChild(obj);
+      }
+
+      function getRandColor () {
+          var letters = '0123456789ABCDEF'.split('');
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+      }
+
+      function getRandCoord () {
+        var coord = Math.random() * 60;
+        return Math.random() < .5 ? coord + 5 : coord * -1 - 5;
+      }
+    </script>
+-->
+
+<!-- link-traversal
+    <a-scene>
+      <a-assets>
+        <img id="arena" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/aframeArena.png">
+        <img id="thumbCity" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/city.png">
+        <img id="thumbSunrise" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/sunrise.png">
+        <img id="thumbMountains" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/mountains.png">
+      </a-assets>
+      <a-link href="city.html" position="-3.5 1.5 -1.0" image="#thumbCity"></a-link>
+      <a-link href="sunrise.html" position="0 1.5 -1.0" image="#thumbSunrise"></a-link>
+      <a-link href="mountains.html" position="3.5 1.5 -1.0" image="#thumbMountains"></a-link>
+      <a-entity id="sky"
+                geometry="primitive: sphere; radius: 65;"
+                material="shader: flat; color: #47c9ff; side: double"></a-entity>
+      <a-entity id="ground"
+                geometry="primitive: circle; radius: 8;"
+                rotation="-90 0 0"
+                material="shader: flat; src: #arena"></a-entity>
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+    </a-scene>
+-->
+
 <p class="alk-newsflash">
   <strong>NEWSFLASH</strong>: Serafina spoke at the 2017 Denver Comic-Con panels!
 </p>
