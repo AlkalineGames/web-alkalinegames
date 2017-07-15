@@ -19,12 +19,12 @@
     <!-- requires <script src="https://unpkg.com/aframe-extras.ocean@%3.8.6/dist/aframe-extras.ocean.min.js"></script> -->
   </a-entity>
   <a-mixin id="text-company"
-    text="align: center; color: #ff3b69;
+    text="align: center; color: #ff3b69; font: /assets/Jam3/Roboto-msdf.json;
     value: Alkaline Games LLC™;
     width: 4000">
   </a-mixin>
   <a-mixin id="text-tagline"
-    text="align: center; color: #ffbd5c;
+    text="align: center; color: #ffbd5c; font: /assets/Jam3/Roboto-msdf.json;
     value: ...basically, we make games;
     width: 2000">
   </a-mixin>
@@ -44,19 +44,30 @@
     <a-text mixin="text-company" position="0   50 0"></a-text>
     <a-text mixin="text-tagline" position="0 -100 0"></a-text>
   </a-entity>
-  <a-entity id="moon"
-    geometry="primitive: sphere; radius: 20"
-    material="color: #EFEFEF; shader: flat"
-    position="-500 250 -1000"
-    light="type: point; intensity: 1">
-  </a-entity>
-  <a-entity id="about" position="-5 2.5 -10">
+  <a-entity id="textAbout" position="-3.6 3 -10" visible=false>
     <a-text
-      text="align: center; color: #ffffff; font: /assets/Jam3/Roboto-msdf.json;
+      text="align: left; color: white; font: /assets/Jam3/Roboto-msdf.json;
       value: Co-founded by two tech and game industry\nveterans with over 25 years of experience each,\nwe specialize in VR for our own games and are\navailable for VR/AR contract development.\nFor more information contact us at info@alkalinegames.com;
       width: 8">
     </a-text>
   </a-entity>
+  <a-sphere id="moon" class="intersectable" position="-500 150 -1000"
+    radius= "50" shader= "flat" color="#dfdfff"
+    light="type: point; color: #dfdfff; intensity: 1"
+    event-set__entercolor="_event: mouseenter; material.color: #ffffff"
+    event-set__enterlight="_event: mouseenter; light.intensity: 2"
+    event-set__enterscale="_event: mouseenter; scale: 1.5 1.5 1.5"
+    event-set__entertext="_event: mouseenter; _target: #textAbout; visible: true"
+    event-set__leavecolor="_event: mouseleave; material.color: #dfdfff"
+    event-set__leavelight="_event: mouseleave; light.intensity: 1"
+    event-set__leavescale="_event: mouseleave; scale: 1 1 1"
+    event-set__leavetext="_event: mouseleave; _target: #textAbout; visible: false">
+    <a-text position="26 -8 60"
+      text="align: center; color: #00003f; font: /assets/Jam3/Roboto-msdf.json;
+      value: about;
+      width: 700">
+    </a-text>
+  </a-sphere>
   <a-entity id="railer" position="4 0.1 -10" rotation="0 90 0">
     <a-collada-model src="#railer-rail"
       animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 0.15 0; loop: true">
@@ -74,6 +85,14 @@
       value: NEWSFLASH\nSerafina spoke at the 2017\nDenver Comic-Con panels!\n(details also coming soon...);
       width: 2">
     </a-text>
+  </a-entity>
+  <a-entity>
+    <a-camera mouse-cursor="objects: .intersectable"
+        look-controls-enabled="true"
+        wasd-controls-enabled="true">
+      <a-cursor color="black" fuse="true" far="1100" objects=".intersectable">
+      </a-cursor>
+    </a-camera>
   </a-entity>
 </a-scene>
 
