@@ -1,14 +1,54 @@
 <a-scene>
   <a-assets>
-    <a-asset-item id="railer-rail" src="/assets/railer-rail.dae"></a-asset-item>
+    <a-asset-item id="railer-rail"
+      src="/assets/railer-rail.dae"></a-asset-item>
   </a-assets>
+  <a-mixin id="words-company"></a-mixin>
+  <a-mixin id="words-tagline"></a-mixin>
+  <script>
+    function onResize() {
+      const aspectRatio = window.innerWidth / window.innerHeight;
+      const lowAspect = (aspectRatio < 1.0);
+      const textValueCompany =
+        lowAspect ? "Alkaline\nGames\nLLC" : "Alkaline Games LLC";
+      const textValueTagline =
+        lowAspect ? "...basically,\nwe make games" : "...basically, we make games";
+      const textWidthCompany =
+        lowAspect ? "2500" : "3000";
+      const textWidthTagline =
+        lowAspect ? "1000" : "1500";
+      const positionCompany =
+        lowAspect ? "0 100 0" : "0 50 0";
+      const positionTagline =
+        lowAspect ? "0 -160 0" : "0 -80 0";
+      document.getElementById("words-company").setAttribute(
+        "text", "align: center;"
+                + "color: #ff3b69;"
+                + "font: /assets/Jam3/Roboto-msdf.json;"
+                + "value: " + textValueCompany + ";"
+                + "width: " + textWidthCompany + ";");
+      document.getElementById("words-tagline").setAttribute(
+        "text", "align: center;"
+                + "color: #ffbd5c;"
+                + "font: /assets/Jam3/Roboto-msdf.json;"
+                + "value: " + textValueTagline + ";"
+                + "width: " + textWidthTagline + ";");
+      <!-- TODO: ### position only updates on the first call
+      document.getElementById("words-company").setAttribute(
+        "position", positionCompany);
+      document.getElementById("words-tagline").setAttribute(
+        "position", positionTagline);
+    }
+    onResize();
+    document.getElementsByTagName("body")[0].setAttribute(
+      "onResize", "onResize()");
+  </script>
   <a-entity id="sky"
     geometry="primitive: sphere; radius: 5000"
     material="shader: gradient; topColor: 000 000 050; bottomColor: 255 200 150"
     scale="-1 1 1">
     <!-- requires <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script> -->
-  </a-entity>
-  <a-entity id="dust"
+  </a-entity> <a-entity id="dust"
     particle-system="preset: dust; color: #ff7f3f; particleCount: 2000; rotationAngle: 0; rotationAxis: z; texture: /assets/aframe-more/ideaspacevr/aframe-particle-system-component/smokeparticle.png">
     <!-- requires <script src="https://unpkg.com/aframe-particle-system-component@1.0.10/dist/aframe-particle-system-component.min.js"></script> -->
   </a-entity>
@@ -18,32 +58,22 @@
     rotation="-90 0 0">
     <!-- requires <script src="https://unpkg.com/aframe-extras.ocean@%3.8.6/dist/aframe-extras.ocean.min.js"></script> -->
   </a-entity>
-  <a-mixin id="text-company"
-    text="align: center; color: #ff3b69; font: /assets/Jam3/Roboto-msdf.json;
-    value: Alkaline Games LLC™;
-    width: 3000">
-  </a-mixin>
-  <a-mixin id="text-tagline"
-    text="align: center; color: #ffbd5c; font: /assets/Jam3/Roboto-msdf.json;
-    value: ...basically, we make games;
-    width: 1500">
-  </a-mixin>
   <a-entity position="0 500 -1000">
-    <a-text mixin="text-company" position="0 50 0"></a-text>
-    <a-text mixin="text-tagline" position="0 -80 0"></a-text>
+    <a-entity mixin="words-company"></a-entity>
+    <a-entity mixin="words-tagline"></a-entity>
   </a-entity>
 <!--
   <a-entity position="-1000 500 0" rotation="0 90 0">
-    <a-text mixin="text-company" position="0 50 0"></a-text>
-    <a-text mixin="text-tagline" position="0 -80 0"></a-text>
+    <a-text mixin="words-company" position="0 50 0"></a-text>
+    <a-text mixin="words-tagline" position="0 -80 0"></a-text>
   </a-entity>
   <a-entity position="1000 500 0" rotation="0 -90 0">
-    <a-text mixin="text-company" position="0 50 0"></a-text>
-    <a-text mixin="text-tagline" position="0 -80 0"></a-text>
+    <a-text mixin="words-company" position="0 50 0"></a-text>
+    <a-text mixin="words-tagline" position="0 -80 0"></a-text>
   </a-entity>
   <a-entity position="0 500 1000" rotation="0 180 0">
-    <a-text mixin="text-company" position="0 50 0"></a-text>
-    <a-text mixin="text-tagline" position="0 -80 0"></a-text>
+    <a-text mixin="words-company" position="0 50 0"></a-text>
+    <a-text mixin="words-tagline" position="0 -80 0"></a-text>
   </a-entity>
 -->
   <a-entity id="about-section" position="-250 150 -1000">
