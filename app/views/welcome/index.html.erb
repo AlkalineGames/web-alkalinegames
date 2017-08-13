@@ -5,44 +5,6 @@
   </a-assets>
   <a-mixin id="words-company"></a-mixin>
   <a-mixin id="words-tagline"></a-mixin>
-  <script>
-    function onResize() {
-      const aspectRatio = window.innerWidth / window.innerHeight;
-      const lowAspect = (aspectRatio < 1.0);
-      const textValueCompany =
-        lowAspect ? "Alkaline\nGames\nLLC" : "Alkaline Games LLC";
-      const textValueTagline =
-        lowAspect ? "...basically,\nwe make games" : "...basically, we make games";
-      const textWidthCompany =
-        lowAspect ? "2500" : "3000";
-      const textWidthTagline =
-        lowAspect ? "1000" : "1500";
-      const positionCompany =
-        lowAspect ? "0 100 0" : "0 50 0";
-      const positionTagline =
-        lowAspect ? "0 -160 0" : "0 -80 0";
-      document.getElementById("words-company").setAttribute(
-        "text", "align: center;"
-                + "color: #ff3b69;"
-                + "font: /assets/Jam3/Roboto-msdf.json;"
-                + "value: " + textValueCompany + ";"
-                + "width: " + textWidthCompany + ";");
-      document.getElementById("words-tagline").setAttribute(
-        "text", "align: center;"
-                + "color: #ffbd5c;"
-                + "font: /assets/Jam3/Roboto-msdf.json;"
-                + "value: " + textValueTagline + ";"
-                + "width: " + textWidthTagline + ";");
-      <!-- TODO: ### position only updates on the first call
-      document.getElementById("words-company").setAttribute(
-        "position", positionCompany);
-      document.getElementById("words-tagline").setAttribute(
-        "position", positionTagline);
-    }
-    onResize();
-    document.getElementsByTagName("body")[0].setAttribute(
-      "onResize", "onResize()");
-  </script>
   <a-entity id="sky"
     geometry="primitive: sphere; radius: 5000"
     material="shader: gradient; topColor: 000 000 050; bottomColor: 255 200 150"
@@ -59,23 +21,15 @@
     <!-- requires <script src="https://unpkg.com/aframe-extras.ocean@%3.8.6/dist/aframe-extras.ocean.min.js"></script> -->
   </a-entity>
   <a-entity position="0 500 -1000">
-    <a-entity mixin="words-company"></a-entity>
-    <a-entity mixin="words-tagline"></a-entity>
+    <a-text id="text-company"
+      align="center"
+      color="#ff3b69"
+      font="/assets/Jam3/Roboto-msdf.json"></a-text>
+    <a-text id="text-tagline"
+      align="center"
+      color="#ffbd5c"
+      font="/assets/Jam3/Roboto-msdf.json"></a-text>
   </a-entity>
-<!--
-  <a-entity position="-1000 500 0" rotation="0 90 0">
-    <a-text mixin="words-company" position="0 50 0"></a-text>
-    <a-text mixin="words-tagline" position="0 -80 0"></a-text>
-  </a-entity>
-  <a-entity position="1000 500 0" rotation="0 -90 0">
-    <a-text mixin="words-company" position="0 50 0"></a-text>
-    <a-text mixin="words-tagline" position="0 -80 0"></a-text>
-  </a-entity>
-  <a-entity position="0 500 1000" rotation="0 180 0">
-    <a-text mixin="words-company" position="0 50 0"></a-text>
-    <a-text mixin="words-tagline" position="0 -80 0"></a-text>
-  </a-entity>
--->
   <a-entity id="about-section" position="-250 150 -1000">
     <a-entity id="about-text" position="0 0 10" visible=false>
       <a-text position="0 -60 0"
@@ -161,3 +115,27 @@
   More details and announcement will come soon.
   In meantime, please contact us at <a href="mailto:info@alkalinegames.com">info@alkalinegames.com</a>
 </p>
+
+<script>
+  function onResize() {
+    const aspectRatio = window.innerWidth / window.innerHeight;
+    const lowAspect = (aspectRatio < 1.0);
+    let textCompany = document.getElementById("text-company")
+    textCompany.setAttribute("value",
+      lowAspect ? "Alkaline\nGames\nLLC" : "Alkaline Games LLC");
+    textCompany.setAttribute("width",
+      lowAspect ? "2500" : "3000");
+    textCompany.setAttribute("position",
+      lowAspect ? "0 100 0" : "0 50 0");
+    let textTagline = document.getElementById("text-tagline")
+    textTagline.setAttribute("value",
+      lowAspect ? "...basically,\nwe make games" : "...basically, we make games");
+    textTagline.setAttribute("width",
+      lowAspect ? "1000" : "1500");
+    textTagline.setAttribute("position",
+      lowAspect ? "0 -160 0" : "0 -80 0");
+  }
+  onResize();
+  document.getElementsByTagName("body")[0].setAttribute(
+    "onResize", "onResize()");
+</script>
