@@ -3,8 +3,11 @@
     <a-asset-item id="railer-rail"
       src="/assets/railer-rail.dae"></a-asset-item>
   </a-assets>
-  <a-mixin id="words-company"></a-mixin>
-  <a-mixin id="words-tagline"></a-mixin>
+  <a-camera mouse-cursor="objects: .intersectable"
+    look-controls="enabled: true; tiltEnabled: false"
+    wasd-controls-enabled="true">
+    <a-cursor color="black" fuse="true" far="1100" objects=".intersectable"></a-cursor>
+  </a-camera>
   <a-entity id="sky"
     geometry="primitive: sphere; radius: 5000"
     material="shader: gradient; topColor: 000 000 050; bottomColor: 255 200 150"
@@ -87,14 +90,6 @@
       width: 2">
     </a-text>
   </a-entity>
-  <a-entity>
-    <a-camera mouse-cursor="objects: .intersectable"
-        look-controls-enabled="true"
-        wasd-controls-enabled="true">
-      <a-cursor color="black" fuse="true" far="1100" objects=".intersectable">
-      </a-cursor>
-    </a-camera>
-  </a-entity>
 </a-scene>
 
 <h1>Alkaline Games LLC&trade;</h1>
@@ -139,3 +134,11 @@
   document.getElementsByTagName("body")[0].setAttribute(
     "onResize", "onResize()");
 </script>
+<!--
+<script>
+  if (/Android|BB|BlackBerry|Mobile|Kindle|Opera Mini|PlayBook|Silk|Windows Phone|iPad|iPhone|iPod|webOS/i.test(navigator.userAgent)) {
+    // TODO: @@@ FUTURE
+    //enableMode("TiltLook");
+  }
+</script>
+-->
