@@ -24,7 +24,7 @@
     particle-system="preset: dust; color: #ff7f3f; particleCount: 2000; rotationAngle: 0; rotationAxis: z; texture: /assets/aframe-more/ideaspacevr/aframe-particle-system-component/smokeparticle.png">
     <!-- requires <script src="https://unpkg.com/aframe-particle-system-component@1.0.10/dist/aframe-particle-system-component.min.js"></script> -->
   </a-entity>
-  <a-entity position="0 500 -1000">
+  <a-entity id="section-brand" position="0 500 -1000">
     <a-text id="text-company"
       align="center"
       color="#ff3b69"
@@ -34,7 +34,7 @@
       color="#ffbd5c"
       font="/assets/Jam3/Roboto-msdf.json"></a-text>
   </a-entity>
-  <a-entity id="about-section" position="-250 150 -1000">
+  <a-entity id="section-about" position="-250 150 -1000">
     <a-entity id="about-text" position="0 0 10" visible=false>
       <a-text position="0 -60 0"
         text="align: center; color: white; font: /assets/Jam3/Roboto-msdf.json;
@@ -73,7 +73,7 @@
       event-set__leavetext="_event: mouseleave; _target: #about-text; visible: false">
     </a-plane>
   </a-entity>
-  <a-entity id="railer" position="4 0.1 -10" rotation="0 90 0">
+  <a-entity id="section-railer" position="4 0.1 -10" rotation="0 90 0">
     <a-collada-model src="#railer-rail"
       animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 0.15 0; loop: true">
       <!-- requires <script src="https://unpkg.com/aframe-animation-component@3.2.5/dist/aframe-animation-component.min.js"></script> -->
@@ -84,7 +84,7 @@
       width: 10">
     </a-text>
   </a-entity>
-  <a-entity id="news" position="-0.55 1.1 -1.5" rotation="0 0 0">
+  <a-entity id="section-news" position="-0.55 1.1 -1.5" rotation="0 0 0">
     <a-text
       text="align: left; color: #ffff7f; font: /assets/Jam3/Roboto-msdf.json;
       value: NEWSFLASH\nSerafina spoke at the 2017\nDenver Comic-Con panels!\n(details also coming soon...);
