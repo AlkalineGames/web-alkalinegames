@@ -35,25 +35,25 @@
       font="/assets/Jam3/Roboto-msdf.json"></a-text>
   </a-entity>
   <a-entity id="section-about" position="-250 150 -1000">
-    <a-text id="about-text" position="0 -60 10" visible=false
+    <a-text id="text-about" position="0 -60 10" visible=false
       text="align: center; color: white; font: /assets/Jam3/Roboto-msdf.json;
       value: Co-founded by two tech and game industry\nveterans with over 25 years of experience each,\nwe specialize in VR for our own games and are\navailable for VR/AR contract development.\nFor more information contact us at info@alkalinegames.com;
       width: 900">
     </a-text>
-    <a-sphere id="about-moon" position="0 0 0" radius= "50"
+    <a-sphere id="moon-about" position="0 0 0" radius= "50"
       class="intersectable" color="#dfdfff" shader="flat" visible=true
       light="type: point; color: #dfdfff; intensity: 1"
       event-set__entercolor="_event: click; material.color: #ffffff"
       event-set__enterlight="_event: click; light.intensity: 1.3"
-      event-set__entertext="_event: click; _target: #about-text; visible: true"
+      event-set__entertext="_event: click; _target: #text-about; visible: true"
       event-set__leavecolor="_event: eventReset; material.color: #dfdfff"
       event-set__leavelight="_event: eventReset; light.intensity: 1"
-      animation="property: position; startEvents: click; easing: easeInOutQuad; dur: 300; to: 0 130 0"
+      animation__rise="property: position; startEvents: click; easing: easeInOutQuad; dur: 300; to: 0 130 0"
       animation__reset="property: position; startEvents: eventReset; easing: easeInOutQuad; dur: 300; to: 0 0 0">
 <!-- TODO: @@@ mouseenter EVENT IS NOT WORKING WELL
       event-set__entercolor="_event: mouseenter; material.color: #ffffff"
       event-set__enterlight="_event: mouseenter; light.intensity: 1.3"
-      event-set__entertext="_event: mouseenter; _target: #about-text; visible: true"
+      event-set__entertext="_event: mouseenter; _target: #text-about; visible: true"
       animation="property: position; startEvents: mouseenter; dur: 300; to: 0 175 100"
 -->
       <a-text position="15 -6 60"
@@ -65,10 +65,10 @@
 <!-- TODO: @@@ a-sphere SCALED DOESN'T INTERSECT ACCURATELY WITH cursor raycaster
     <a-sphere id="about-trigger" radius= "1" scale="400 150 1"
 -->
-    <a-plane id="about-text-plane" width="1000" height="400"
+    <a-plane id="plane-text-about" width="1000" height="400"
       class="intersectable" material="transparent: true; opacity: 0"
-      event-proxy="listen: mouseleave; target: #about-moon; emit: eventReset"
-      event-set__leavetext="_event: mouseleave; _target: #about-text; visible: false">
+      event-proxy="listen: mouseleave; target: #moon-about; emit: eventReset"
+      event-set__leavetext="_event: mouseleave; _target: #text-about; visible: false">
     </a-plane>
   </a-entity>
   <a-entity id="section-railer" position="4 0.1 -10" rotation="0 90 0">
