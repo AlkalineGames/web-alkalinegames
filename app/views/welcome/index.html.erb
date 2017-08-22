@@ -3,10 +3,14 @@
     <a-asset-item id="railer-rail"
       src="/assets/railer-rail.dae"></a-asset-item>
   </a-assets>
-  <a-camera mouse-cursor="objects: .intersectable"
+  <a-camera
     look-controls="enabled: true; tiltEnabled: false"
+    mouse-cursor="objects: .intersectable"
     wasd-controls-enabled="true">
-    <a-cursor color="black" fuse="true" far="1100" objects=".intersectable"></a-cursor>
+    <a-cursor
+      color="black"
+      fuse-timeout="1"
+      raycaster="far: 1500; objects: .intersectable"></a-cursor>
   </a-camera>
   <a-sky
     geometry="primitive: sphere; radius: 5000"
