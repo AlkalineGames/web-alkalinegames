@@ -84,13 +84,22 @@
         width: 600">
       </a-text>
     </a-sphere>
-<!-- TODO: @@@ a-sphere SCALED DOESN'T INTERSECT ACCURATELY WITH cursor raycaster
-    <a-sphere id="about-trigger" radius= "1" scale="400 150 1"
--->
-    <a-plane id="plane-text-about" width="1000" height="400"
-      class="intersectable" material="transparent: true; opacity: 0"
-      event-proxy="listen: mouseleave; target: #moon-about; emit: eventReset"
-      event-set__leavetext="_event: mouseleave; _target: #text-about; visible: false">
+    <a-plane id="plane-text-about"
+      class="intersectable"
+      width="900" height="400"
+      material="transparent: true; opacity: 0"
+      event-proxy="listen: mouseleave;
+                   target: #moon-about;
+                   emit: eventReset"
+      event-set__leavetext="_event: mouseleave;
+                            _target: #text-about;
+                            visible: false">
+      <!-- TODO: @@@ SUPPORT INTERSECTION DETECTION, INCLUSIVELY INSTEAD OF EXCLUSIVELY
+        the emitted raycaster event "raycaster-intersected-cleared"
+        provides what we need because it is sent to *every* intersected object,
+        not just the closest intersection, HOWEVER, the mouse-cursor component
+        does not use the aframe raycaster component and so doesn't emit this event
+      -->
     </a-plane>
   </a-entity>
   <a-entity id="section-railer" position="2 0.1 -10">
@@ -112,11 +121,17 @@
         event-set__clicktext="_event: click; _target: #text-railer; visible: true"
         event-proxy="listen: click; target: #model-railer; emit: eventTurn">
       </a-box>
-      <a-plane id="railer-text-plane" position="0 0.5 -0.5" rotation="0 90 0"
-        width="6.5" height="5"
-        class="intersectable" material="transparent: true; opacity: 0"
-        event-proxy="listen: mouseleave; target: #model-railer; emit: eventReset"
-        event-set__leavetext="_event: mouseleave; _target: #text-railer; visible: false">
+      <a-plane id="railer-text-plane"
+        class="intersectable"
+        width="6.3" height="5"
+        position="0 0.5 -0.4" rotation="0 90 0"
+        material="transparent: true; opacity: 0.1"
+        event-proxy="listen: mouseleave;
+                     target: #model-railer;
+                     emit: eventReset"
+        event-set__leavetext="_event: mouseleave;
+                              _target: #text-railer;
+                              visible: false">
       </a-plane>
     </a-collada-model>
   </a-entity>
