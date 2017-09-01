@@ -9,6 +9,8 @@ AFRAME.registerComponent('event-proxy', {
     emit: {default: ''}
   },
 
+  multiple: true,
+
   update: function () {
     var data = this.data;
     this.el.addEventListener(data.listen, function () {
