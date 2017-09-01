@@ -39,41 +39,33 @@
       font="/assets/Jam3/Roboto-msdf.json"></a-text>
   </a-entity>
   <a-entity id="section-about" position="-250 150 -1000">
-    <a-text id="text-about" position="0 -60 10" visible=false
-      text="align: center; color: white; font: /assets/Jam3/Roboto-msdf.json;
-      value: Co-founded by two tech and game industry\nveterans with over 25 years of experience each,\nwe specialize in VR for our own games and are\navailable for VR/AR contract development.\nFor more information contact us at info@alkalinegames.com;
-      width: 900">
-    </a-text>
-    <a-sphere id="sun-about" position="-18 150 -75" radius="60" color="#ffefcf" shader="flat">
+    <a-sphere id="sun-about" position="-18 150 -75" radius="60"
+      color="#ffefcf" shader="flat">
     </a-sphere>
 <!-- TODO: @@@ original settings here, changed for the eclipse
-    <a-sphere id="moon-about" radius= "50" color="#dfdfff"
-      class="intersectable" shader="flat" visible=true
+    <a-sphere id="moon-about" class="intersectable" visible=true
+      radius= "50" color="#dfdfff" shader="flat"
       light="type: point; color: #dfdfff; intensity: 1"
-      event-set__entercolor="_event: click; material.color: #ffffff"
-      event-set__enterlight="_event: click; light.intensity: 1.3"
-      event-set__entertext="_event: click; _target: #text-about; visible: true"
-      event-set__leavecolor="_event: eventReset; material.color: #dfdfff"
-      event-set__leavelight="_event: eventReset; light.intensity: 1"
-      animation__rise="property: position; startEvents: click; easing: easeInOutQuad; dur: 300; to: 0 130 0"
-      animation__reset="property: position; startEvents: eventReset; easing: easeInOutQuad; dur: 300; to: 0 0 0">
+      event-set__riseColor="_event: eventRise; material.color: #ffffff"
+      event-set__sinkColor="_event: eventSink; material.color: #dfdfff"
+      event-set__riseLight="_event: eventRise; light.intensity: 1.3"
+      event-set__sinklight="_event: eventSink; light.intensity: 1"
+      animation__rise="property: position; startEvents: eventRise; easing: easeInOutQuad; dur: 300; to: 0 130 0"
+      animation__sink="property: position; startEvents: eventSink; easing: easeInOutQuad; dur: 300; to: 0 0 0">
 -->
-    <a-sphere id="moon-about" radius="50" color="#7f7f9f"
-      class="intersectable" shader="flat" visible=true
+    <a-sphere id="moon-about" class="intersectable" visible=true
+      radius="50" color="#7f7f9f" shader="flat"
       light="type: point; color: #ffefcf; intensity: 3"
-      event-set__entercolor="_event: click; material.color: black"
-      event-set__enterlight="_event: click; light.intensity: 1"
-      event-set__entertext="_event: click; _target: #text-about; visible: true"
-      event-set__leavecolor="_event: eventReset; material.color: #7f7f9f"
-      event-set__leavelight="_event: eventReset; light.intensity: 3"
-      animation__rise="property: position; startEvents: click; easing: easeInOutQuad; dur: 600; to: 0 130 0"
-      animation__reset="property: position; startEvents: eventReset; easing: easeInOutQuad; dur: 600; to: 0 0 0">
-<!-- TODO: @@@ mouseenter EVENT IS NOT WORKING WELL
-      event-set__entercolor="_event: mouseenter; material.color: #ffffff"
-      event-set__enterlight="_event: mouseenter; light.intensity: 1.3"
-      event-set__entertext="_event: mouseenter; _target: #text-about; visible: true"
-      animation="property: position; startEvents: mouseenter; dur: 300; to: 0 175 100"
--->
+      event-proxy="listen: click; target: #handler-about; emit: eventShow"
+      event-set__riseColor="_event: eventRise; material.color: black"
+      event-set__sinkColor="_event: eventSink; material.color: #7f7f9f"
+      event-set__riseLight="_event: eventRise; light.intensity: 1"
+      event-set__sinkColor="_event: eventSink; light.intensity: 3"
+      animation__rise="property: position; startEvents: eventRise; easing: easeInOutQuad; dur: 600; to: 0 130 0"
+      animation__sink="property: position; startEvents: eventSink; easing: easeInOutQuad; dur: 600; to: 0 0 0">
+    <!-- TODO: @@@ EVENT mouseenter IS NOT WORKING WELL
+      event-proxy="listen: mouseenter; target: #handler-about; emit: eventShow"
+    -->
 <!-- TODO: @@@ original settings here, changed for the eclipse
       <a-text position="15 -6 60"
         text="align: center; color: #00003f; font: /assets/Jam3/Roboto-msdf.json;
@@ -84,16 +76,18 @@
         width: 600">
       </a-text>
     </a-sphere>
-    <a-plane id="plane-text-about"
-      class="intersectable"
+    <a-text id="text-about" position="0 -60 10" visible=false
+      text="align: center; color: white; font: /assets/Jam3/Roboto-msdf.json;
+            value: Co-founded by two tech and game industry\nveterans with over 25 years of experience each,\nwe specialize in VR for our own games and are\navailable for VR/AR contract development.\nFor more information contact us at info@alkalinegames.com;
+            width: 900"
+      event-set__invisible="_event: eventHide; visible: false"
+      event-set__visible="_event: eventShow; visible: true">
+    </a-text>
+    <!-- NOTE: if plane comes before text then we get z-fighting -->
+    <a-plane id="plane-text-about" class="intersectable"
       width="900" height="400"
       material="transparent: true; opacity: 0"
-      event-proxy="listen: mouseleave;
-                   target: #moon-about;
-                   emit: eventReset"
-      event-set__leavetext="_event: mouseleave;
-                            _target: #text-about;
-                            visible: false">
+      event-proxy="listen: mouseleave; target: #handler-about; emit: eventHide">
       <!-- TODO: @@@ SUPPORT INTERSECTION DETECTION, INCLUSIVELY INSTEAD OF EXCLUSIVELY
         the emitted raycaster event "raycaster-intersected-cleared"
         provides what we need because it is sent to *every* intersected object,
@@ -101,39 +95,48 @@
         does not use the aframe raycaster component and so doesn't emit this event
       -->
     </a-plane>
+    <a-entity id="handler-about"
+      event-proxy__a="listen: eventShow; target: #handler-railer; emit: eventHide"
+      event-proxy__b="listen: eventShow; target: #moon-about; emit: eventRise"
+      event-proxy__c="listen: eventHide; target: #moon-about; emit: eventSink"
+      event-proxy__d="listen: eventShow; target: #text-about; emit: eventShow"
+      event-proxy__e="listen: eventHide; target: #text-about; emit: eventHide">
+    </a-entity>
   </a-entity>
   <a-entity id="section-railer" position="2 0.1 -10">
     <a-collada-model id="model-railer" src="#railer-rail"
       animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 0.15 0; loop: true"
       animation__turn="property: rotation; startEvents: eventTurn; easing: easeInOutQuad; dur: 600; to: 0 -90 0"
       animation__reset="property: rotation; startEvents: eventReset; easing: easeInOutQuad; dur: 600; to: 0 0 0">
-      <!-- requires <script src="https://unpkg.com/aframe-animation-component@3.2.5/dist/aframe-animation-component.min.js"></script> -->
-      <a-text id="text-railer" position="0 2 0" rotation="0 90 0" visible=false
-        text="align: center; color: #7fdfcf; font: /assets/Jam3/Roboto-msdf.json;
-        value: Railer™ is our\noriginal Gear VR game\n coming soon...;
-        width: 12"
-        event-set__hide="_event: eventHide; visible: false"
-        event-set__show="_event: eventShow; visible: true">
-      </a-text>
-      <a-box id="box-railer"
-        class="intersectable" material="transparent: true; opacity: 0"
+      <a-box id="box-railer" class="intersectable"
         width=10 height=0.6 depth=1.6
-        event-set__clicktext="_event: click; _target: #text-railer; visible: true"
-        event-proxy="listen: click; target: #model-railer; emit: eventTurn">
-      </a-box>
-      <a-plane id="railer-text-plane"
-        class="intersectable"
-        width="6.3" height="5"
-        position="0 0.5 -0.4" rotation="0 90 0"
         material="transparent: true; opacity: 0"
-        event-proxy="listen: mouseleave;
-                     target: #model-railer;
-                     emit: eventReset"
-        event-set__leavetext="_event: mouseleave;
-                              _target: #text-railer;
-                              visible: false">
+        event-proxy="listen: click; target: #handler-railer; emit: eventShow">
+      <!-- TODO: @@@ EVENT mouseenter IS NOT WORKING WELL
+        event-proxy="listen: mouseenter; target: #handler-railer; emit: eventShow">
+      -->
+      </a-box>
+      <a-text id="text-railer"
+        position="0 2 0" rotation="0 90 0" visible=false
+        text="align: center; color: #7fdfcf; font: /assets/Jam3/Roboto-msdf.json;
+              value: Railer™ is our\noriginal Gear VR game\n coming soon...;
+              width: 12"
+        event-set__invisible="_event: eventHide; visible: false"
+        event-set__visible="_event: eventShow; visible: true">
+      </a-text>
+      <a-plane id="plane-railer-text" class="intersectable"
+        position="0 0.5 -0.4" rotation="0 90 0" width="6.3" height="5"
+        material="transparent: true; opacity: 0"
+        event-proxy="listen: mouseleave; target: #handler-railer; emit: eventHide">
       </a-plane>
     </a-collada-model>
+    <a-entity id="handler-railer"
+      event-proxy__a="listen: eventShow; target: #handler-about; emit: eventHide"
+      event-proxy__b="listen: eventShow; target: #model-railer; emit: eventTurn"
+      event-proxy__c="listen: eventHide; target: #model-railer; emit: eventReset"
+      event-proxy__d="listen: eventShow; target: #text-railer; emit: eventShow"
+      event-proxy__e="listen: eventHide; target: #text-railer; emit: eventHide">
+    </a-entity>
   </a-entity>
 <!--
   <a-entity id="section-news" position="-0.55 1.1 -1.5" rotation="0 0 0">
