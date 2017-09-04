@@ -57,10 +57,10 @@
       animation__sink="property: position; startEvents: eventSink; easing: easeInOutQuad; dur: 300; to: 0 0 0">
 -->
     <a-sphere id="moon-about" class="intersectable" visible=true
-      radius="50" color="#7f7f9f" shader="flat"
+      radius="50" color="#557" shader="flat"
       event-proxy="listen: click; target: #handler-about; emit: eventShow"
       event-set__riseColor="_event: eventRise; material.color: black"
-      event-set__sinkColor="_event: eventSink; material.color: #7f7f9f"
+      event-set__sinkColor="_event: eventSink; material.color: #557"
       animation__rise="property: position; startEvents: eventRise; easing: easeInOutQuad; dur: 600; to: 0 130 0"
       animation__sink="property: position; startEvents: eventSink; easing: easeInOutQuad; dur: 600; to: 0 0 0">
     <!-- TODO: @@@ EVENT mouseenter IS NOT WORKING WELL
