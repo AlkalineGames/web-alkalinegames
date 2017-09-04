@@ -40,7 +40,10 @@
   </a-entity>
   <a-entity id="section-about" position="-250 150 -1000">
     <a-sphere id="sun-about" position="-18 150 -75" radius="60"
-      color="#ffefcf" shader="flat">
+      color="#ffefcf" shader="flat"
+      light="type: point; color: #ffefcf; intensity: 1.5"
+      event-set__eclipse="_event: eventEclipse; light.intensity: 0.5"
+      event-set__uneclipse="_event: eventUneclipse; light.intensity: 1.5">
     </a-sphere>
 <!-- TODO: @@@ original settings here, changed for the eclipse
     <a-sphere id="moon-about" class="intersectable" visible=true
@@ -55,12 +58,9 @@
 -->
     <a-sphere id="moon-about" class="intersectable" visible=true
       radius="50" color="#7f7f9f" shader="flat"
-      light="type: point; color: #ffefcf; intensity: 3"
       event-proxy="listen: click; target: #handler-about; emit: eventShow"
       event-set__riseColor="_event: eventRise; material.color: black"
       event-set__sinkColor="_event: eventSink; material.color: #7f7f9f"
-      event-set__riseLight="_event: eventRise; light.intensity: 1"
-      event-set__sinkColor="_event: eventSink; light.intensity: 3"
       animation__rise="property: position; startEvents: eventRise; easing: easeInOutQuad; dur: 600; to: 0 130 0"
       animation__sink="property: position; startEvents: eventSink; easing: easeInOutQuad; dur: 600; to: 0 0 0">
     <!-- TODO: @@@ EVENT mouseenter IS NOT WORKING WELL
@@ -99,6 +99,8 @@
       event-proxy__a="listen: eventShow; target: #handler-railer; emit: eventHide"
       event-proxy__b="listen: eventShow; target: #moon-about; emit: eventRise"
       event-proxy__c="listen: eventHide; target: #moon-about; emit: eventSink"
+      event-proxy__f="listen: eventShow; target: #sun-about; emit: eventEclipse"
+      event-proxy__g="listen: eventHide; target: #sun-about; emit: eventUneclipse"
       event-proxy__d="listen: eventShow; target: #text-about; emit: eventShow"
       event-proxy__e="listen: eventHide; target: #text-about; emit: eventHide">
     </a-entity>
