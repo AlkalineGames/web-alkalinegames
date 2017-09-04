@@ -84,17 +84,21 @@
       event-set__visible="_event: eventShow; visible: true">
     </a-text>
     <!-- NOTE: if plane comes before text then we get z-fighting -->
+    <!-- DEPRECATED
     <a-plane id="plane-text-about" class="intersectable"
       width="900" height="400"
       material="transparent: true; opacity: 0"
       event-proxy="listen: mouseleave; target: #handler-about; emit: eventHide">
+    -->
       <!-- TODO: @@@ SUPPORT INTERSECTION DETECTION, INCLUSIVELY INSTEAD OF EXCLUSIVELY
         the emitted raycaster event "raycaster-intersected-cleared"
         provides what we need because it is sent to *every* intersected object,
         not just the closest intersection, HOWEVER, the mouse-cursor component
         does not use the aframe raycaster component and so doesn't emit this event
       -->
+    <!-- DEPRECATED
     </a-plane>
+    -->
     <a-entity id="handler-about"
       event-proxy__a="listen: eventShow; target: #handler-railer; emit: eventHide"
       event-proxy__b="listen: eventShow; target: #moon-about; emit: eventRise"
@@ -126,11 +130,13 @@
         event-set__invisible="_event: eventHide; visible: false"
         event-set__visible="_event: eventShow; visible: true">
       </a-text>
+    <!-- DEPRECATED
       <a-plane id="plane-railer-text" class="intersectable"
         position="0 0.5 -0.4" rotation="0 90 0" width="6.3" height="5"
         material="transparent: true; opacity: 0"
         event-proxy="listen: mouseleave; target: #handler-railer; emit: eventHide">
       </a-plane>
+    -->
     </a-collada-model>
     <a-entity id="handler-railer"
       event-proxy__a="listen: eventShow; target: #handler-about; emit: eventHide"
